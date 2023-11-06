@@ -1,0 +1,58 @@
+---
+title: "QMM_ASSIGNMENT DEA"
+author: "Yeswanth Siripurapu"
+date: "2023-11-06"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# The code will read the file energy.csv and store all of the data in a 
+#DataFrame called Energy.
+#The input code is too short to provide a detailed and accurate answer. To gain deeper insight, try again using a longer piece of code.
+
+```{r}
+Energy <- read.csv("D:/energy.csv")
+```
+
+#The code is a benchmarking code that will be run in the R environment.
+#The input code is too short to provide a detailed and accurate answer. To gain deeper insight, try again using a longer piece of code.
+
+```{r}
+library(Benchmarking)
+
+```
+
+#The code is a function that takes in two vectors and returns the correlation 
+#between them.
+#The first vector is the size of the power grid, which is stored as D.C..Size, 
+#and the second vector is how many times it has shut down over time, which is stored as Shut.Downs.
+#The code starts by creating an empty list called e with three elements: x, y, 
+#and RTS="crs".
+#This means that x will be used to store data about the size of power grids 
+#(D.C.), y will be used to store data about how often they have shut down
+#(Shutdowns), and RTS=3 tells us what type of correlation we are looking for:
+#Pearson's r-squared value 3 or Spearman's rank order correlation coefficient 3
+#The code is designed to create a time series plot of energy consumption and queue time.
+
+```{r}
+x1=Energy$D.C..Size
+x2=Energy$Shut.Downs
+y1=Energy$Computing.Time..h.
+x=matrix(c(x1,x2),ncol=2)
+y2=Energy$MWh.Consumed
+y3=Energy$Queue.Time..ms.
+y=matrix(c(y1,y2,y3),ncol=3)
+colnames(y)= c("Computing.Time..h.","MWh.Consumed","Queue.Time..ms.")
+colnames(x)=c("D.C..Size","Shut.Downs")
+x
+y
+
+e=dea(x,y,RTS="crs")
+e
+peers(e)
+
+lambda(e)
+
+#dea.plot.transform(y[,1],y[,2],RTS=3)
+```
